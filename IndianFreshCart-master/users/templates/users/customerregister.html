@@ -1,0 +1,784 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RegistrationForm_v3 by Colorlib</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+  font-family: "Muli-Regular";
+  src: url("../fonts/muli/Muli-Regular.ttf"); }
+@font-face {
+  font-family: "Muli-SemiBold";
+  src: url("../fonts/muli/Muli-SemiBold.ttf"); }
+@font-face {
+  font-family: "Muli-Bold";
+  src: url("../fonts/muli/Muli-Bold.ttf"); }
+@font-face {
+  font-family: "Abril_Fatface";
+  src: url("../fonts/Abril_Fatface/AbrilFatface-Regular.ttf"); }
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  font-family: "Muli-Regular";
+  color: #666;
+  font-size: 13px;
+  margin: 0; }
+
+input, textarea, select, button {
+  font-family: "Muli-Regular";
+  color: #333;
+  font-size: 13px; }
+
+p, h1, h2, h3, h4, h5, h6, ul {
+  margin: 0; }
+
+img {
+  max-width: 100%; }
+
+ul {
+  padding-left: 0;
+  margin-bottom: 0; }
+
+a:hover {
+  text-decoration: none; }
+
+:focus {
+  outline: none; }
+
+.wrapper {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center; }
+
+.inner {
+  max-width: 850px;
+  margin: auto;
+  background: #fff;
+  padding: 15px; }
+
+form {
+  border: 1px solid #d3cccc;
+  padding: 62px 65px 64px; }
+
+h3 {
+  text-transform: uppercase;
+  font-size: 35px;
+  font-family: "Abril_Fatface";
+  text-align: center;
+  margin-bottom: 48px;
+  color: #6d5555;
+  letter-spacing: 3px; }
+
+.form-group {
+  display: flex; }
+  .form-group .form-wrapper {
+    width: 50%; }
+    .form-group .form-wrapper:first-child {
+      margin-right: 40px; }
+
+.form-wrapper {
+  margin-bottom: 27px; }
+  .form-wrapper label {
+    margin-bottom: 10px;
+    display: block;
+    text-transform: uppercase;
+    font-family: "Muli-Bold"; }
+
+.form-holder {
+  position: relative; }
+  .form-holder i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 14px;
+    font-size: 17px;
+    color: #999; }
+
+.form-control {
+  border: 1px solid #e6e6e6;
+  display: block;
+  width: 100%;
+  height: 42px;
+  padding: 0 20px 0 46px;
+  color: #999;
+  font-size: 15px; }
+  .form-control::-webkit-input-placeholder {
+    font-size: 17px;
+    transform: translateY(5px);
+    color: #999; }
+  .form-control::-moz-placeholder {
+    font-size: 17px;
+    transform: translateY(5px);
+    color: #999; }
+  .form-control:-ms-input-placeholder {
+    font-size: 17px;
+    transform: translateY(5px);
+    color: #999; }
+  .form-control:-moz-placeholder {
+    font-size: 17px;
+    transform: translateY(5px);
+    color: #999; }
+
+.select::after {
+  content: "\f2f9";
+  font-family: Material-Design-Iconic-Font;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+  font-size: 15px;
+  color: #999; }
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-left: 20px; }
+  select option[value=""][disabled] {
+    display: none; }
+
+button {
+  border: none;
+  float: right;
+  width: 152px;
+  height: 42px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #ea9f48;
+  font-size: 13px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Muli-SemiBold";
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s; }
+  button::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f98805;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 50%;
+    transform-origin: 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out; }
+  button:hover::before, button:active::before, button:focus::before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1); }
+
+.form-end {
+  display: flex;
+  align-items: center;
+  margin-top: 13px; }
+
+.button-holder {
+  width: 50%; }
+
+.checkbox {
+  position: relative;
+  width: 50%;
+  padding-left: 22px; }
+  .checkbox label {
+    cursor: pointer;
+    color: #999;
+    font-family: "Muli-SemiBold"; }
+  .checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer; }
+  .checkbox input:checked ~ .checkmark:after {
+    display: block; }
+
+.checkmark {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  height: 12px;
+  width: 13px;
+  border-radius: 2px;
+  background-color: #ebebeb;
+  border: 1px solid #ccc;
+  font-family: Material-Design-Iconic-Font;
+  color: #000;
+  font-size: 10px;
+  font-weight: bolder; }
+  .checkmark:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    content: '\f26b'; }
+
+@media (max-width: 767px) {
+  .wrapper {
+    display: block; }
+
+  form {
+    padding: 0;
+    border: none; }
+
+  .form-group {
+    display: block; }
+    .form-group .form-wrapper {
+      width: 100%; }
+      .form-group .form-wrapper:first-child {
+        margin-right: 0px; }
+
+  .form-end {
+    display: block; }
+
+  .checkbox, .button-holder {
+    width: 100%; }
+
+  .inner {
+    padding: 30px 15px; }
+
+  button {
+    float: none;
+    margin-top: 30px; }
+
+  h3 {
+    font-size: 30px;
+    margin-bottom: 40px; } }
+
+/*# sourceMappingURL=style.css.map */
+{
+"version": 3,
+"mappings": "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",
+"sources": ["style.scss"],
+"names": [],
+"file": "style.css"
+}
+@font-face {
+	font-family: "Muli-Regular";
+	src: url('../fonts/muli/Muli-Regular.ttf');
+}
+@font-face {
+	font-family: "Muli-SemiBold";
+	src: url('../fonts/muli/Muli-SemiBold.ttf');
+}
+@font-face {
+	font-family: "Muli-Bold";
+	src: url('../fonts/muli/Muli-Bold.ttf');
+}
+@font-face {
+	font-family: "Abril_Fatface";
+	src: url('../fonts/Abril_Fatface/AbrilFatface-Regular.ttf');
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+	font-family: "Muli-Regular";
+	color: #666;
+	font-size: 13px;
+	margin: 0;
+}
+input, textarea, select, button {
+	font-family: "Muli-Regular";
+	color: #333;
+	font-size: 13px;
+}
+p, h1, h2, h3, h4, h5, h6, ul {
+	margin: 0;
+}
+img {
+	max-width: 100%;
+}
+ul {
+	padding-left: 0;
+	margin-bottom: 0;
+}
+a:hover {
+	text-decoration: none;
+}
+:focus {
+    outline: none;
+}
+.wrapper {
+	min-height: 100vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
+}
+.inner {
+	max-width: 850px;
+	margin: auto;
+	background: #fff;
+	padding: 15px;
+}
+form {
+	border: 1px solid #d3cccc;
+	padding: 62px 65px 64px;
+}
+h3 {
+	text-transform: uppercase;
+	font-size: 35px;
+	font-family: "Abril_Fatface";
+	text-align: center;
+	margin-bottom: 48px;
+	color: #6d5555;
+	letter-spacing: 3px;
+}
+.form-group {
+	display: flex;
+	.form-wrapper {
+		width: 50%;
+		&:first-child {
+			margin-right: 40px;
+		}
+	}
+}
+.form-wrapper {
+	margin-bottom: 27px;
+	label {
+		margin-bottom: 10px;
+		display: block;
+		text-transform: uppercase;
+		font-family: "Muli-Bold";
+	}
+}
+.form-holder {
+	position: relative;
+	i {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 14px;
+		font-size: 17px;
+		color: #999;
+	}
+}
+.form-control {
+	border: 1px solid #e6e6e6;
+	display: block;
+	width: 100%;
+	height: 42px;
+	padding: 0 20px 0 46px;
+	color: #999;
+	font-size: 15px;
+	&::-webkit-input-placeholder { 
+		font-size: 17px;
+		transform: translateY(5px);
+		color: #999;
+	}
+	&::-moz-placeholder { 
+		font-size: 17px;
+		transform: translateY(5px);
+		color: #999;
+	}
+	&:-ms-input-placeholder { 
+		font-size: 17px;
+		transform: translateY(5px);
+		color: #999;
+	}
+	&:-moz-placeholder { 
+		font-size: 17px;
+		transform: translateY(5px);
+		color: #999;
+	}
+}
+.select {
+	&::after {
+		content: "\f2f9";
+    	font-family: Material-Design-Iconic-Font;
+    	position: absolute;
+    	top: 50%;
+		transform: translateY(-50%);
+		right: 12px;
+		font-size: 15px;
+		color: #999;
+	}
+}
+select {
+	-moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-left: 20px;
+ 	option[value=""][disabled] {
+ 		display: none;
+ 	}
+}
+button {
+	border: none;
+	float: right;
+	width: 152px;
+	height: 42px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	background: #ea9f48;
+	font-size: 13px;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: "Muli-SemiBold";
+	-webkit-transform: perspective(1px) translateZ(0);
+	transform: perspective(1px) translateZ(0);
+	position: relative;
+	-webkit-transition-property: color;
+	transition-property: color;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: #f98805;
+		-webkit-transform: scaleX(0);
+		transform: scaleX(0);
+		-webkit-transform-origin: 50%;
+		transform-origin: 50%;
+		-webkit-transition-property: transform;
+		transition-property: transform;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+	}
+	&:hover, &:active, &:focus {
+		&::before {
+			-webkit-transform: scaleX(1);
+			transform: scaleX(1);
+		}
+	}
+}
+.form-end {
+	display: flex;
+	align-items: center;
+	margin-top: 13px;
+}
+.button-holder {
+	width: 50%;
+}
+.checkbox {
+	position: relative;
+	width: 50%;
+	padding-left: 22px;
+	label {
+		cursor: pointer;
+		color: #999;
+		font-family: "Muli-SemiBold";
+	}
+	input {
+		position: absolute;
+	    opacity: 0;
+	    cursor: pointer;
+	}
+	input:checked ~ .checkmark:after {
+		display: block;
+	}
+}
+.checkmark {
+	position: absolute;
+    top: 1px;
+    left: 0;
+    height: 12px;
+    width: 13px;
+    border-radius: 2px;
+    background-color: #ebebeb;
+    border: 1px solid #ccc;
+    font-family: Material-Design-Iconic-Font;
+    color: #000;
+    font-size: 10px;
+    font-weight: bolder;
+	&:after {
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%,-50%);
+	    display: none;
+	    content: '\f26b';
+	}
+}
+
+@media (max-width: 1199px) { 
+	
+}
+@media (max-width: 991px) {
+	
+}
+@media (max-width: 767px) {
+	.wrapper {
+		display: block;
+	}
+	form {
+		padding: 0;
+		border: none;
+	}
+	.form-group {
+		display: block;
+		.form-wrapper {
+			width: 100%;
+			&:first-child {
+				margin-right: 0px;
+			}
+		}
+	}
+	.form-end {
+		display: block;
+	}
+	.checkbox, .button-holder  {
+		width: 100%;
+	}
+	.inner {
+		padding: 30px 15px;
+	}
+	button {
+		float: none;
+		margin-top: 30px;
+	}
+	h3 {
+		font-size: 30px;
+		margin-bottom: 40px;
+	}
+}
+
+    </style>
+		
+		<!-- <link rel="stylesheet" href="{% static 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css' %}">
+		
+		
+		<link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+	</head>
+
+	<body background="{% static 'f2.jpg' %}">
+
+		<div class="wrapper" style="background-image: url('static/f2.jpg');">
+			<div class="inner">
+				<form action="" method="post">
+					{% csrf_token %}
+					<h3>Registration Form</h3>
+					<div class="form-group">
+						<div class="form-wrapper">
+							<label for="name">name:</label>
+							<div class="form-holder">
+								<i class="zmdi zmdi-account-o"></i>
+								<input type="text" class="form-control" name="name" id="name">
+							</div>
+						</div>
+						<div class="form-wrapper">
+							<label for="email">Email</label>
+							<div class="form-holder">
+                <i style="font-style: normal; font-size: 15px;">@</i>
+								<input type="email" name="email" id="email" class="form-control">
+								
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-wrapper">
+							<label for="username">Username :</label>
+							<div class="form-holder">
+								<i class="zmdi zmdi-lock-outline"></i>
+								<input type="text" class="form-control" placeholder="username" id="username" name="username">
+							</div>
+						</div>
+						<div class="form-wrapper">
+							<label for="password"> Password:</label>
+							<div class="form-holder">
+								<i class="zmdi zmdi-lock-outline"></i>
+								<input type="password" class="form-control" placeholder="********" id="password" name="password">
+							</div>
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-wrapper">
+              <label for="phone">Phone:</label>
+              <div class="form-holder select">
+                
+                <input type="phone" class="form-control" id="phone" name="phone">
+              
+								
+								
+								<i class="zmdi zmdi-pin"></i>
+							</div>
+						</div>
+						<div class="form-wrapper">
+							
+							<label for="confirmpassword">Confirm Password:</label>
+							<input type="password" class="form-control" placeholder="********" id="password" name="password">
+							<div class="form-holder select">
+								
+								<i class="zmdi zmdi-face"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-end">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"> I Accept All Conditions
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="button-holder">
+							<button>Register Now</button>
+						</div>
+						
+					</div>
+				</form>
+			</div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+	<!-- main content -->
+	<div class="wrapper">
+
+<!-- ****** table  start ********** -->
+		<div class="row">
+			<div class="col-12 col-m-12 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<h3 style="color:red; text-align:center" >Complaints
+						</h3>
+
+					</div>
+					<div class="card-content">
+						<form method="POST" action="">
+<table>
+        {% csrf_token %}
+
+
+
+
+            <div class="card-body">
+
+              <div class="form-group">
+                <label for="jbtitle">Report Title</label><br><br>
+                <input type="text" id="jbtitle" name="jbtitle" class="form-control" required>
+                <!-- <input type="text" id="jbtitle" name="jbtitle" value="{{info.place1}}" class="form-control"> -->
+
+              </div><br>
+
+
+
+              <div class="form-group">
+                <label for="jbname">Staff Name</label><br><br>
+               <input type="text" id="jbname" name="jbname" class="form-control" required>
+              </div><br>
+
+
+              <div class="form-group">
+                <label for="jbdes">Report</label><br><br>
+                <textarea id="jbdes"  name="jbdes" class="form-control" rows="4" placeholder="" required></textarea>
+              </div><br>
+
+
+
+
+
+
+
+            </div>
+            <div class="row mb-2">
+                <!-- <div class="col-sm-3">
+
+                  <input type="submit" name="submit" id="submit" style="background-color:#5896;">
+                </div> -->
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <div class="form-group" class="col-sm-3">
+
+                    <input type="submit" id="submit" name="submit" class="form-control"  style="background-color: #17a2b8;color: white;">
+                    <!-- style="color:#2589" -->
+                </div>
+
+            </div>
+                </div>
+
+              </div>
+            </div>
+
+        </table>
+      </form>
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- ****** table start ********** -->
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	</div>
+	<!-- end main content -->
+{% endblock content %}
+
+
+
+
+
+
+

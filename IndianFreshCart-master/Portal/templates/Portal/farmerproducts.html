@@ -1,0 +1,162 @@
+{% extends 'Portal/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<br>
+    {% if checker %}
+    <div class="col-md-8 mx-auto pt-4 my-4">
+        <h1 class="text-center mb-2" style="font-family:Times New Roman">Edit Product</h1>
+        <h3 class="text-muted" style="font-family:Arial">Edit Product & Other Details:</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-12">{{form.farmer_name|as_crispy_field}}</div>
+              <div class="col-12">{{form.product_name|as_crispy_field}}</div>
+              <div class="col-12">{{form.product_price|as_crispy_field}}</div>
+              <div class="col-12">{{form.product_desc|as_crispy_field}}</div>
+              <div class="col-12">{{form.product_image|as_crispy_field}}</div>
+              <div class="col-12">{{form.location|as_crispy_field}}</div>
+            </div>
+            <button type="submit" class="btn btn-cyan">Submit</button>
+          </form>
+
+    </div>
+    {% else %}
+
+    {% if prod %}
+    <div id="prod" class="main container mb-5 text-center">
+        <h1 class="mt-5">Products</h1><hr>
+        <div class="row pt-3">
+            {% for product in prod %}
+                <div class="col-12 mx-auto col-sm-6 col-md-4 col-lg-4">
+                    <div class="card mb-4">
+    
+                        <!-- Card image -->
+                        <div class="view overlay">
+                          <img class="card-img-top img-fluid p-3" src="/media/{{product.product_image}}" alt="image">
+                          <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                          </a>
+                        </div>
+    
+                        <!-- Card content -->
+                        <div class="card-body">
+    
+                          <!-- Title -->
+                          <h3 id="farmername{{product.id}}" class="card-title">Farmer - {{product.farmer_name}}</h4>
+                          <h4 id="name{{product.id}}" class="card-title">Name : {{product.product_name}}</h4>
+                          <!-- Text -->
+                          <p class="card-text">Price : Rs.<span id="price{{product.id}}">{{product.product_price}}</span>/-</p>
+                          <h5 id="location{{product.id}}" class="card-title">{{product.location}}</h5>
+ 
+
+                          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{product.id}}">
+                            View Description
+                        </button><br>
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModalCenter{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                          aria-hidden="true">
+        
+                          <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+                          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        
+        
+                            <div class="modal-content">
+                              
+                              <div class="p-4 modal-body">
+                          
+                                <h4 class="m-3 text-center">{{product.product_desc}}​</h4>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-unique" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                            </div>
+                          
+                          <a type="button" href="{% url 'farmerproducts_update' product.id %}" class="btn btn-unique btn-sm">Edit Product</a>
+                            
+                          <a type="button" href="{% url 'delprod' product.id %}" class="btn btn-danger btn-sm">Remove Product</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    
+        </div>
+        <hr>
+    </div>
+
+    {% else %}
+
+    <div class="container mb-5 text-center">
+      <div class="border p-3 mt-5 mx-auto mb-3 border-0 z-depth-3" style="max-width:600px">
+        <h1 class="text-center my-5">You have not added any products.</h1><hr>
+        <h2 class="text-center my-5">Please add your products <a href="{% url 'index' %}">here</a></h2>
+      
+      </div>
+        
+        </div>
+
+    {% endif %}
+
+    {% endif %}
+
+{% block js %}
+{% endblock %}
+<!-- <footer class="text-white " style="background-image:linear-gradient(to bottom,rgb(51, 51, 51),rgb(51, 51, 51))">
+  <div class="container pt-5">
+     <div class="row mb-5">
+         <div class="col-md text-center">
+                 <h3>𝓘ndian𝓕resh𝓒art</h3>
+                     <p class="mt-4">Great design will not sell an inferior product, but it will enable
+                         a great product to achieve its maximum potential.</p>
+                 <div class="px-2">
+                 <a class="a" href="#"><span><i class="fab blue-text fa-facebook-square fa-2x"></i></span></a>
+                 <a class="a" href="#"><span><i class="fab red-text fa-instagram fa-2x"></i></i></span></a>
+                 <a class="a" href="#"><span><i class="fab cyan-text fa-twitter-square fa-2x"></i></span></a>
+                 </div>
+
+         </div>
+
+
+         <div class="col-md-3">
+                 <h4 style="text-align:center">Menu</h4>
+                     <div class="px-auto" style="text-align:center">
+                     <ul class="list-unstyled justify-content-center mt-4">
+                     <li><a class="a" href="{% url 'index' %}">Home</a></li>
+                     <li><a class="a" href="{% url 'about' %}">About</a></li> -->
+                     <!-- <li><a class="a" href="{% url 'contact' %}">Contact Us</a></li> -->
+                     </ul>
+                     </div>
+         </div>
+
+
+         <!-- <div class="col-md ">
+                 <h4 style="text-align:center" >Have a Questions?</h4>
+                 <ul class="list-unstyled mt-4" style="text-align: center">
+
+                     <li><span><i class="fas green-text fa-map-marker-alt fa-1x mr-2"></i><span class="text">Nadergul, Hyderabad, INDIA</span></span></li>
+                     <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 9505149487  </span></a></li>
+                     <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 7093680301  </span></a></li>
+                    <li><a class="a" href="mailto: indianfreshcart@gmail.com"><span><i class="fas cyan-text fa-envelope fa-1x mr-2"></i></span><span class="text">indianfreshcart@gmail.com</span></a></li>
+                 </ul>
+          </div>
+     </div>
+         <div class="row">
+                 <div class="col-md-12 text-center">
+                 <p>
+                 Copyright &copy;2021 All rights reserved @ <i aria-hidden="true"></i> <a class="a" href="{% url 'index' %}">𝓘ndian𝓕resh𝓒art</a>
+
+                 </p>
+                 </div> -->
+         </div>
+     </div>
+ </footer>
+
+
+{% endblock %}
+

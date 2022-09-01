@@ -1,0 +1,156 @@
+{% extends 'Portal/index.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+<div
+    class=" text-center bg-image"
+    style="
+      background-image: url('{% static 'images/farm.jpeg'%}');no-repeat center center;
+       background-size:cover;
+       height: 300px;
+      margin-top: 58px;"
+  >
+    <div >
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white">
+          <h1 class="mb-3">About us</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <ol class="col-12 breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">About Us</li>
+      </ol>
+      <div class="col-12">
+        <h3>About Us</h3>
+        <hr>
+            <div style="font-size: large;">
+              <p class="note note-light">"<span style="font-weight: 425;">Agriculture is the backbone of the Indian Economy</span>"- said <span class="mark" style="font-weight: 400;">Mahatma Gandhi</span> six decades ago. Even today, the situation is still the same, with almost the entire economy being sustained by agriculture, which is the mainstay of the villages. It contributes 16% of the overall GDP and accounts for employment of approximately 52% of the Indian population. Rapid growth in agriculture is essential not only for self-reliance but also to earn valuable foreign exchange.<br>
+                <br>
+                Indian farmers are second to none in production and productivity despite of the fact that millions are marginal and small farmers. They adopt improved agriculture technology as efficiently as farmers in developed countries. It is felt that with provision of timely and adequate inputs such as fertilizers, seeds, pesticides and by making available affordable agricultural credit /crop insurance, Indian farmers are going to ensure food and nutritional security to the Nation.<br>
+                  <br>
+                  It is envisaged to make available relevant information and services to the farming community and private sector through the use of information and communication technologies, to supplement the existing delivery channels provided for by the department. Farmers’ Portal is an endeavour in this direction to create one stop shop for meeting all informational needs relating to Agriculture, Animal Husbandry and Fisheries sectors production, sale/storage of an Indian farmer. 
+                    With this Indian Farmer will not be required to sift through maze of websites created for specific purposes.Once in the Farmers’ Portal, a farmer will be able to get all relevant information on specific subjects around his village/block /district or state. This information will be delivered with the help of our website so that it connects our farmers to the respected customers. Farmers will also be able to ask specific queries as well as give valuable feedback through the Feedback module specially developed for the purpose.</p>
+            </div>
+            <hr>
+      </div>
+    </div>
+
+    </div>
+
+
+
+
+  </div>
+
+
+  <!-- <footer class="text-white " style="background-image:linear-gradient(to bottom,rgb(51, 51, 51),rgb(51, 51, 51))">
+    <div class="container pt-5">
+       <div class="row mb-5">
+           <div class="col-md text-center">
+                   <h3>𝓘ndian𝓕resh𝓒art</h3>
+                       <p class="mt-4">Great design will not sell an inferior product, but it will enable
+                           a great product to achieve its maximum potential.</p>
+                   <div class="px-2">
+                   <a class="a" href="#"><span><i class="fab blue-text fa-facebook-square fa-2x"></i></span></a>
+                   <a class="a" href="#"><span><i class="fab red-text fa-instagram fa-2x"></i></i></span></a>
+                   <a class="a" href="#"><span><i class="fab cyan-text fa-twitter-square fa-2x"></i></span></a>
+                   </div>
+
+           </div>
+
+
+           <div class="col-md-3">
+                   <h4 style="text-align:center">Menu</h4>
+                       <div class="px-auto" style="text-align:center">
+                       <ul class="list-unstyled justify-content-center mt-4">
+                       <li><a class="a" href="{% url 'index' %}">Home</a></li>
+                       <li><a class="a" href="{% url 'about' %}">About</a></li> -->
+                       <!-- <li><a class="a" href="{% url 'contact' %}">Contact Us</a></li> -->
+                       </ul>
+                       </div>
+           </div>
+
+
+           <!-- <div class="col-md ">
+                   <h4 style="text-align:center" >Have a Questions?</h4>
+                   <ul class="list-unstyled mt-4" style="text-align: center">
+
+                       <li><span><i class="fas green-text fa-map-marker-alt fa-1x mr-2"></i><span class="text">Nadergul, Hyderabad, INDIA</span></span></li>
+                       <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 9505149487  </span></a></li>
+                       <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 7093680301  </span></a></li>
+                      <li><a class="a" href="mailto: indianfreshcart@gmail.com"><span><i class="fas cyan-text fa-envelope fa-1x mr-2"></i></span><span class="text">indianfreshcart@gmail.com</span></a></li>
+                   </ul>
+            </div>
+       </div>
+           <div class="row">
+                   <div class="col-md-12 text-center">
+                   <p>
+                   Copyright &copy;2021 All rights reserved @ <i aria-hidden="true"></i> <a class="a" href="{% url 'index' %}">𝓘ndian𝓕resh𝓒art</a>
+
+                   </p>
+                   </div> -->
+           </div>
+       </div>
+   </footer>
+
+
+        
+{% block js %}
+{% endblock %}
+
+        <!-- JQuery -->
+             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+
+            var total = 0;
+            if(localStorage.getItem('cart') == null){
+            var cart = {};
+        }
+        else{
+            cart = JSON.parse(localStorage.getItem('cart'));
+            len=Object.keys(cart).length;
+            document.getElementById('cartlen').innerHTML = `<span class="badge badge-info ml-2">${len}</span>`;
+            var total=0;
+            var high=0;
+            var key1;
+            for(var key in cart){
+                if (cart.hasOwnProperty(key)){
+                    key1=parseInt(key);
+                    if(key1>high){
+                      high=key1;
+                    }
+                }
+            }
+            for(var i=0;i<=high;i++){
+                if(cart[i]!=null){
+                total=total+cart[i][0]*cart[i][2];
+                }
+            }
+
+                $('#cartpri').html(total);
+
+        }
+
+
+         $('.logout-but').click(function() {
+                    localStorage.clear();
+                });
+
+
+
+
+        </script>
+
+{% endblock %}
+
+

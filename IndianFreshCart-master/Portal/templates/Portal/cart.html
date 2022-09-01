@@ -1,0 +1,330 @@
+{% extends 'Portal/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+        {% if user.is_authenticated %}
+        {% else %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>You are required to login in order to place the order !</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endif %}
+    {% if checker %}
+        <div class="col-md-8 mx-auto pt-4 my-4">
+        <h1 class="text-center mb-2" style="font-family:Times New Roman">Change Address</h1>
+        <h3 class="text-muted" style="font-family:Arial">Enter Address & Other Details:</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                   <div class="col-6">{{form.name|as_crispy_field}}</div>
+                   <div class="col-6">{{form.email|as_crispy_field}}</div>
+                   <div class="col-12">{{form.address|as_crispy_field}}</div>
+                   <div class="col-12">{{form.address_line_2|as_crispy_field}}</div>
+                   <div class="col-4">{{form.city|as_crispy_field}}</div>
+                   <div class="col-4">{{form.state|as_crispy_field}}</div>
+                   <div class="col-4">{{form.pin_code|as_crispy_field}}</div>
+                   <div class="col-6">{{form.phone_number|as_crispy_field}}</div>
+                   <div class="d-none col-12">{{form.data|as_crispy_field}}</div>
+                   <div class="d-none col-12">{{form.total|as_crispy_field}}</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Change Address</button>
+
+
+        </form>
+
+    </div>
+
+
+    {% else %}
+    <div class="container my-3">
+        <h1 class="text-center" style="font-family:Arial">Cart</h1>
+        <h3 id="empty"></h3>
+
+        <div class="table-responsive-lg">
+          <table class="mx-auto table table-hover" style="width:900px">
+            <thead id="thead" class="black white-text">
+
+            </thead>
+            <tbody id="items">
+
+            </tbody>
+          </table>
+        </div>
+      <hr>
+      <div id="text">
+
+      </div>
+      <div class="text-center">
+        <button id="clear" type="button" class="btn btn-info">Clear Cart</button>
+      </div>
+    </div>
+
+    <h4 id="mydata"></h4>
+
+    <div class="checkout col-md-8 mx-auto pt-4 my-4">
+        <h1 class="text-center mb-2" style="font-family:Times New Roman">Check Out</h1>
+        <h3 class="text-muted" style="font-family:Arial">Enter Address & Other Details:</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                   <div class="col-6">{{form.name|as_crispy_field}}</div>
+                   <div class="col-6">{{form.email|as_crispy_field}}</div>
+                   <div class="col-12">{{form.address|as_crispy_field}}</div>
+                   <div class="col-12">{{form.address_line_2|as_crispy_field}}</div>
+                   <div class="col-4">{{form.city|as_crispy_field}}</div>
+                   <div class="col-4">{{form.state|as_crispy_field}}</div>
+                   <div class="col-4">{{form.pin_code|as_crispy_field}}</div>
+                   <div class="col-6">{{form.phone_number|as_crispy_field}}</div>
+                   <div class="d-none col-12">{{form.data|as_crispy_field}}</div>
+                   <div class="d-none col-12">{{form.total|as_crispy_field}}</div>
+            </div>
+            {% if user.is_authenticated %}
+            <button type="submit" class="btn btn-primary">Place Order</button>
+            {% else %}
+                <a type="button" href="{% url 'login' %}" class="btn btn-primary">Place Order</a>
+            {% endif %}
+
+        </form>
+
+    </div>
+
+{% endif %}
+
+
+
+
+<!-- <footer class="text-white " style="background-image:linear-gradient(to bottom,rgb(51, 51, 51),rgb(51, 51, 51))">
+  <div class="container pt-5">
+     <div class="row mb-5">
+         <div class="col-md text-center">
+                 <h3>𝓘ndian𝓕resh𝓒art</h3>
+                     <p class="mt-4">Great design will not sell an inferior product, but it will enable
+                         a great product to achieve its maximum potential.</p>
+                 <div class="px-2">
+                 <a class="a" href="#"><span><i class="fab blue-text fa-facebook-square fa-2x"></i></span></a>
+                 <a class="a" href="#"><span><i class="fab red-text fa-instagram fa-2x"></i></i></span></a>
+                 <a class="a" href="#"><span><i class="fab cyan-text fa-twitter-square fa-2x"></i></span></a>
+                 </div>
+
+         </div>
+
+
+         <div class="col-md-3">
+                 <h4 style="text-align:center">Menu</h4>
+                     <div class="px-auto" style="text-align:center">
+                     <ul class="list-unstyled justify-content-center mt-4">
+                     <li><a class="a" href="{% url 'index' %}">Home</a></li>
+                     <li><a class="a" href="{% url 'about' %}">About</a></li>
+                     <li><a class="a" href="{% url 'contact' %}">Contact Us</a></li>
+                     </ul>
+                     </div>
+         </div> -->
+
+
+         <!-- <div class="col-md ">
+                 <h4 style="text-align:center" >Have a Questions?</h4>
+                 <ul class="list-unstyled mt-4" style="text-align: center">
+
+                     <li><span><i class="fas green-text fa-map-marker-alt fa-1x mr-2"></i><span class="text">Nadergul, Hyderabad, INDIA</span></span></li>
+                     <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 9505149487  </span></a></li>
+                     <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 7093680301  </span></a></li>
+                    <li><a class="a" href="mailto: indianfreshcart@gmail.com"><span><i class="fas cyan-text fa-envelope fa-1x mr-2"></i></span><span class="text">indianfreshcart@gmail.com</span></a></li>
+                 </ul>
+          </div>
+     </div>
+         <div class="row">
+                 <div class="col-md-12 text-center">
+                 <p>
+                 Copyright &copy;2021 All rights reserved @ <i aria-hidden="true"></i> <a class="a" href="{% url 'index' %}">𝓘ndian𝓕resh𝓒art</a>
+
+                 </p>
+                 </div> -->
+         </div>
+     </div>
+ </footer>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% block js %}
+{% endblock %}
+
+<script>
+  var total=0;
+  var del=0;
+  len1=0;
+  if(localStorage.getItem('cart')==null){
+    cart={};
+    len1=Object.keys(cart).length;
+  }
+  else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    len=Object.keys(cart).length;
+    len1=Object.keys(cart).length;
+    document.getElementById('cartlen').innerHTML = `<span class="badge badge-info ml-2">${len}</span>`;
+    var high=0;
+    var key1;
+            for(var key in cart){
+                if (cart.hasOwnProperty(key)){
+                    key1=parseInt(key);
+                    if(key1>high){
+                      high=key1;
+                    }
+                }
+            }
+    for(var i=0;i<=high;i++){
+      if(cart[i]!=null){
+        total=total+cart[i][0]*cart[i][2];
+        del=0;
+      }
+    }
+
+            $('#cartpri').html(total);
+   }
+
+
+    if ($.isEmptyObject(cart)) {
+      mystr = `<h4 class="text-center">Your cart is empty, please add some items to your cart before checking out!</h4>`
+      $('#empty').html(mystr);
+    }
+    else {
+      mystr=` <tr>
+              <th scope="col">Qty</th>         
+              <th scope="col">Product Name</th>
+              <th scope="col">Farmer Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Sub Total</th>
+              <th></th>
+            </tr>`
+       $('#thead').html(mystr);
+       var high=0;
+       var key1;
+            for(var key in cart){
+                if (cart.hasOwnProperty(key)){
+                    key1=parseInt(key);
+                    if(key1>high){
+                      high=key1;
+                    }
+                }
+            }
+           for(var i=0;i<=high;i++){
+            if(cart[i]!=null){
+                mystr=` <tr>
+                        <th scope="row">
+                            <ul style="list-style:none; padding: 0px;">
+                                <li style="display: inline-block;text-align: center;padding: 4px;text-decoration: none;"><i id="${i}" class="fas minus fa-minus" style="cursor:pointer"></i></li>
+                                <li style="display: inline-block;text-align: center;padding: 4px;text-decoration: none;"><span class="badge p-1 badge-pill badge-default">Qty : ${cart[i][0]}</span></li>
+                                <li style="display: inline-block;text-align: center;padding: 4px;text-decoration: none;"><i id="${i}" class="fas plus fa-plus" style="cursor:pointer"></i></li>
+                            </ul>
+                        </th>
+                        
+                        <td>${cart[i][1]}</td>
+                        <td>${cart[i][3]}</td>
+                        <td>${cart[i][2]}</td>
+                        <td>${cart[i][0]} x ${cart[i][2]} = ${cart[i][0]*cart[i][2]}</td>
+                        <td><i id="${i}" class="fas cross fa-1x fa-times" style="cursor:pointer"></i></td>
+                      </tr>`
+                 $('#items').append(mystr);
+
+             }
+            }
+
+      }
+
+      document.getElementById('text').innerHTML = `
+      <h3 class="text-center">Cart Total : Rs.${total}.00/- </h3>
+      <h3 class="text-center">Delivery Time : 3 days</h3><hr>
+      <h1 class="text-center">Total : Rs.${total+del}.00/-</h1>`;
+
+        $('i.cross').click(function() {
+            delete(cart[this.id]);
+            updateCart(cart);
+            window.location.reload();
+        });
+
+
+        $('i.plus').click(function() {
+            console.log(cart[this.id][0]);
+            cart[this.id][0]=cart[this.id][0]+1;
+            updateCart(cart);
+            window.location.reload();
+        });
+        $('i.minus').click(function() {
+            console.log(cart[this.id][0]);
+            cart[this.id][0]=cart[this.id][0]-1;
+            if(cart[this.id][0]==0){ delete(cart[this.id]); }
+            updateCart(cart);
+            window.location.reload();
+        });
+
+    $('#clear').click(function() {
+        localStorage.clear();
+        window.location.reload();
+    });
+
+    function updateCart(cart) {
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+  }
+
+
+  if(len1 == 0) {
+    $('.checkout').addClass('d-none');
+  }
+  else {
+    $('.checkout').removeClass('d-none');
+    mystr="";
+    var high=0;
+    var key1;
+            for(var key in cart){
+                if (cart.hasOwnProperty(key)){
+                    key1=parseInt(key);
+                    if(key1>high){
+                      high=key1;
+                    }
+                }
+            }
+    for(var i=0;i<=high;i++){
+            if(cart[i]!=null){
+                    total_price=cart[i][0]*cart[i][2];
+                   mystr = mystr + `{"id":${i},"qty":${cart[i][0]},"name":"${cart[i][1]}","price":${total_price},"farmername":"${cart[i][3]}","farmerusername":"${cart[i][4]}"};`;
+            }
+    }
+    $('#id_data').html(mystr);
+    $('#id_total').val(total);
+  }
+
+
+    $('.logout-but').click(function() {
+                    localStorage.clear();
+                });
+
+        $('#id_name').attr({'placeholder':'Name','autocomplete':'off'});
+        $('#id_email').attr({'placeholder':'Email','autocomplete':'off'});
+        $('#id_address').attr({'placeholder':'1234 Main St','autocomplete':'off'});
+        $('#id_address_line_2').attr({'placeholder':'Appartment, studio, or floor','autocomplete':'off'});
+        $('#id_city').attr({'placeholder':'City','autocomplete':'off'});
+        $('#id_state').attr({'placeholder':'State','autocomplete':'off'});
+        $('#id_pin_code').attr({'placeholder':'Pin Code','autocomplete':'off'});
+        $('#id_phone_number').attr({'placeholder':'Phone','autocomplete':'off'});
+
+
+
+</script>
+
+
+
+
+
+
+
+
+{% endblock %}

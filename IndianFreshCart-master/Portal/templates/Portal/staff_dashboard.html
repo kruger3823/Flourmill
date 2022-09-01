@@ -1,0 +1,165 @@
+
+
+
+{% extends 'Portal/index.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+<br>
+
+
+  <div class="container">
+    <div class="row">
+      <ol class="col-12 breadcrumb">
+        <div>
+    <h4><a href="{% url 'viewworkers' %}">Clik Here To View Customers</a></h4>
+</div><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th>
+
+          <div>
+   <h4><a href="{% url 'viewproducts' %}">Clik Here To View Products</a></div></h4>
+          <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th>
+
+          <div>
+
+   <h4><a href="{% url 'makereport' %}">Clik Here To Make Report</a></div></h4>
+      </ol>
+      <div class="col-12">
+        <h3>Read While You Wait</h3>
+        <hr>
+            <div style="font-size: large;">
+              <p class="note note-light"><span style="font-weight: 425;">Flour Mill</span> <span class="mark" style="font-weight: 400;"></span> <br>
+                <br>
+               A trusted name in the field of manufacturing of flour mill for domestic as well as commercial, having rich experience of 35 years, caters to the need of each home. Its aim is to provide quality products which fulfill today’s needs of its customers, country, and co-workers. It offers pinnacle solution with a wide range of products such as flour mill (atta chakki), atta maker, Sevai Machine, Rava Machine, Pulveriser, Food Processing Machinery Electrical Motor etc. for diversified need of various customers.</p>
+            </div>
+            <hr>
+      </div>
+    </div>
+
+    </div>
+
+
+
+
+  </div>
+
+
+  <!-- <footer class="text-white " style="background-image:linear-gradient(to bottom,rgb(51, 51, 51),rgb(51, 51, 51))">
+    <div class="container pt-5">
+       <div class="row mb-5">
+           <div class="col-md text-center">
+                   <h3>𝓘ndian𝓕resh𝓒art</h3>
+                       <p class="mt-4">Great design will not sell an inferior product, but it will enable
+                           a great product to achieve its maximum potential.</p>
+                   <div class="px-2">
+                   <a class="a" href="#"><span><i class="fab blue-text fa-facebook-square fa-2x"></i></span></a>
+                   <a class="a" href="#"><span><i class="fab red-text fa-instagram fa-2x"></i></i></span></a>
+                   <a class="a" href="#"><span><i class="fab cyan-text fa-twitter-square fa-2x"></i></span></a>
+                   </div>
+
+           </div>
+
+
+           <div class="col-md-3">
+                   <h4 style="text-align:center">Menu</h4>
+                       <div class="px-auto" style="text-align:center">
+                       <ul class="list-unstyled justify-content-center mt-4">
+                       <li><a class="a" href="{% url 'index' %}">Home</a></li>
+                       <li><a class="a" href="{% url 'about' %}">About</a></li> -->
+                       <!-- <li><a class="a" href="{% url 'contact' %}">Contact Us</a></li> -->
+                       </ul>
+                       </div>
+           </div>
+
+
+           <!-- <div class="col-md ">
+                   <h4 style="text-align:center" >Have a Questions?</h4>
+                   <ul class="list-unstyled mt-4" style="text-align: center">
+
+                       <li><span><i class="fas green-text fa-map-marker-alt fa-1x mr-2"></i><span class="text">Nadergul, Hyderabad, INDIA</span></span></li>
+                       <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 9505149487  </span></a></li>
+                       <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 7093680301  </span></a></li>
+                      <li><a class="a" href="mailto: indianfreshcart@gmail.com"><span><i class="fas cyan-text fa-envelope fa-1x mr-2"></i></span><span class="text">indianfreshcart@gmail.com</span></a></li>
+                   </ul>
+            </div>
+       </div>
+           <div class="row">
+                   <div class="col-md-12 text-center">
+                   <p>
+                   Copyright &copy;2021 All rights reserved @ <i aria-hidden="true"></i> <a class="a" href="{% url 'index' %}">𝓘ndian𝓕resh𝓒art</a>
+
+                   </p>
+                   </div> -->
+           </div>
+       </div>
+   </footer>
+
+
+
+{% block js %}
+{% endblock %}
+
+        <!-- JQuery -->
+             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+
+            var total = 0;
+            if(localStorage.getItem('cart') == null){
+            var cart = {};
+        }
+        else{
+            cart = JSON.parse(localStorage.getItem('cart'));
+            len=Object.keys(cart).length;
+            document.getElementById('cartlen').innerHTML = `<span class="badge badge-info ml-2">${len}</span>`;
+            var total=0;
+            var high=0;
+            var key1;
+            for(var key in cart){
+                if (cart.hasOwnProperty(key)){
+                    key1=parseInt(key);
+                    if(key1>high){
+                      high=key1;
+                    }
+                }
+            }
+            for(var i=0;i<=high;i++){
+                if(cart[i]!=null){
+                total=total+cart[i][0]*cart[i][2];
+                }
+            }
+
+                $('#cartpri').html(total);
+
+        }
+
+
+         $('.logout-but').click(function() {
+                    localStorage.clear();
+                });
+
+
+
+
+        </script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<body>
+
+
+
+

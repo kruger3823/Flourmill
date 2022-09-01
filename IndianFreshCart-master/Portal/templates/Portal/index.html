@@ -1,0 +1,475 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Flour Mill</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+
+    <style>
+        .a{
+              color: white;
+        }
+        
+    </style>
+
+
+
+</head>
+
+<body>
+
+
+
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolling-navbar">
+
+            <a class="navbar-brand" href="{% url 'index' %}"><strong>FM</strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'a' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="{% url 'contact' %}">Contact</a> -->
+                    </li>
+                </ul>
+
+
+
+
+                <ul class="navbar-nav ml-auto">
+
+
+                      <li class="nav-item">
+         {% if user.is_authenticated %}
+
+                        <a class="nav-link" href="#">Hello  ! {{request.user}} </a>
+                      </li>
+
+
+
+
+                             {% if user.is_authenticated %}
+                                    {% if user.profile.first_name %}
+                                        {% if usercheck %}
+                    <li class="nav-item">
+                                     <a class="nav-link" href="{% url 'add_comp' %}">Add Complaints</a>
+                                </li>
+                                            <li class="scart nav-item">
+                                              <a class="nav-link" href="{% url 'cart' %}"><i class="fas text-white fa-shopping-cart"></i><span class="mr-2" id="cartlen"></span>Rs.<span id="cartpri">0</span>.00/-</a>
+                                        </li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+
+
+
+                            {% if user.is_authenticated %}
+                      {% if user.profile.first_name %}
+                            {% if usercheck %}
+
+                            {% else %}
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'farmerproducts' %}">Your Products</a>
+                                </li>
+                                 <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'add-staff' %}">Add staff</a>
+                                </li>
+
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'viewreport' %}">view Report</a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'viewcomp' %}">View Complaints</a>
+                                </li>
+
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'farmerorder' %}">Your Orders</a>
+                                </li>
+                            {% endif %}
+                      {% endif %}
+                {% endif %}
+                            {% if user.is_authenticated %}
+                                {% if order %}
+                                <li class="nav-item">
+                                     <a class="nav-link" href="{% url 'order' %}">My Orders</a>
+                                </li>
+
+
+                                {% endif %}
+                            {% endif %}
+                     <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-user"></i> Profile </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                      <a class="dropdown-item" href="{% url 'profile' %}">Edit Profile</a>
+                        <a class="dropdown-item logout-but" href="{% url 'logout' %}">Log out</a>
+
+                    </div>
+                  </li>
+                </ul>
+         {% else %}
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                              <a class="nav-link" href="{% url 'login'%}" style="color: white; font-weight: 300;">Admin Login</a>
+                      </li>
+                      <li class="nav-item">
+                              <a class="nav-link" href="{% url 'login'%}" style="color: white; font-weight: 300;">Customer Login</a>
+                      </li>
+               <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}" style="color: white; font-weight: 300;">Customer Signup</a>
+                 </li>
+
+                    <li class="nav-item">
+                <a class="nav-link" href="{% url 'staff-dashboard' %}" style="color: white; font-weight: 300;">Staff Login</a>
+                 </li>
+                </ul>
+        {% endif %}
+
+
+            </div>
+        </nav>
+
+
+
+
+    </header>
+
+
+      <div style="margin-top: 65px;">
+          {% for message in messages %}
+          <div class="alert {{ message.tags }} alert-dismissible" role="alert"> <span class="font-weight-bold">* {{ message }}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+      </div>
+
+
+
+  {% block content %}
+
+    <div
+    id="intro-example"
+    class="p-5 text-center bg-image"
+    style="background-image: url('{% static 'images/farmer.jpeg'%}');no-repeat center center;
+            background-size:cover;
+       height: 700px;
+      margin-top: 58px;">
+    <div >
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white">
+            <h2>Mill to Customer</h2>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+
+
+
+
+          <div class="container mt-4">
+
+
+                {% if user.is_authenticated %}
+
+                {% if user.profile.first_name %}
+
+              {% if usercheck %}
+                    <div id="prod" class="main container mb-5 text-center">
+                      <h1 class="mt-5">Products</h1><hr>
+                      <div class="row pt-3">
+                          {% for product in prod %}
+                              <div class="col-12 mx-auto col-sm-6 col-md-4 col-lg-4">
+                                  <div class="card mb-4">
+
+                                      <!-- Card image -->
+                                      <div class="view overlay">
+                                        <img class="card-img-top img-fluid p-3" src="/media/{{product.product_image}}" alt="image">
+                                        <a href="#!">
+                                          <div class="mask rgba-white-slight"></div>
+                                        </a>
+                                      </div>
+
+                                      <!-- Card content -->
+                                      <div class="card-body">
+
+                                        <!-- Title -->
+                                        <h3 id="farmername{{product.id}}" class="card-title">{{product.farmer_name}}</h4>
+                                        <h3 id="farmerusername{{product.id}}" class="d-none card-title">{{product.user}}</h4>
+                                        <h4 id="name{{product.id}}" class="card-title">{{product.product_name}}</h4>
+                                        <h5 id="location{{product.id}}" class="card-title">{{product.location}}</h4>
+                                        <!-- Text -->
+                                          <p class="card-text">Rs.<span id="price{{product.id}}">{{product.product_price}}</span>/-</p>
+                                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                                                  <button type="button" id="{{product.id}}" class="cart btn btn-deep-purple cart">Add to Cart</button>
+                                          <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-elegant" data-toggle="modal" data-target="#exampleModalCenter{{product.id}}">
+                                      View Product
+                                  </button>
+
+                                      <!-- Modal -->
+                                  <div class="modal fade" id="exampleModalCenter{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                    aria-hidden="true">
+
+                                    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+                                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="ModalTitle">{{product.product_name}}</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                              <div class="row">
+                                                  <div class="col-12 col-sm-12 col-md-12 col-lg-5">
+                                                      <img class="p-3 modal-img img-fluid" src="/media/{{product.product_image}}" alt="image">
+                                                  </div>
+                                                  <div class="col-12 col-sm-12 col-md-12 col-lg-7"><h3 class="mt-4 mb-3">{{product.product_name}}</h3>
+                                                      <p class="mb-4 text-muted">Rs.{{product.product_price}}/-</p>
+                                                      <h4 class="float-left mb-3">Description : </h4>
+                                                      <h4 class="float-left text-muted">{{product.product_desc}}​</h4>
+                                                  </div>
+                                              </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-unique" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                      </div>
+
+
+
+                                      </div>
+                                  </div>
+                              </div>
+                          {% endfor %}
+
+                      </div>
+                      <hr>
+                  </div>
+              {% else %}
+              <div class="border p-3 mx-auto mb-3 border-0 z-depth-3" style="max-width:600px">
+                    <h1>You Can Add Your Products </h1>
+                    <form method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-12">{{form.farmer_name|as_crispy_field}}</div>
+                        <div class="col-12">{{form.product_name|as_crispy_field}}</div>
+                        <div class="col-12">{{form.product_price|as_crispy_field}}</div>
+                        <div class="col-12">{{form.product_desc|as_crispy_field}}</div>
+                        <div class="col-12">{{form.product_image|as_crispy_field}}</div>
+                        <div class="col-12">{{form.location|as_crispy_field}}</div>
+                      </div>
+                      <button type="submit" class="btn btn-cyan">Add Product</button>
+                    </form>
+              </div>
+              {% endif %}
+              <!-- <a  href="{% url 'profile'%}" class="h5">Edit Profile</a> -->
+
+        {% else %}
+        <div class="border px-3 py-5 mx-auto mb-3 border-0 z-depth-3" style="max-width:700px">
+            <h3 class="font-weight-bold">Please Update your Profile...</h3>
+
+            <hr>
+            <h5>
+            We never share your valuable information to anyone.
+            Your profile helps us to know what you are..
+            </h5><hr>
+            <h5>Please click the below button to update your Profile.</h5><hr>
+            <a class="btn btn-sm btn-unique" href="{% url 'profile' %}" role="button">Update Profile</a>
+        </div>
+        {% endif %}
+
+                {% else %}
+
+                {% endif %}
+
+
+        </div>
+
+
+
+         <!-- <footer class="text-white " style="background-image:linear-gradient(to bottom,rgb(51, 51, 51),rgb(51, 51, 51))">
+         <div class="container pt-5">
+            <div class="row mb-5">
+                <div class="col-md text-center">
+                        <h3>𝓘ndian𝓕resh𝓒art</h3>
+                            <p class="mt-4">Great design will not sell an inferior product, but it will enable
+                                a great product to achieve its maximum potential.</p>
+                        <div class="px-2">
+                        <a class="a" href="#"><span><i class="fab blue-text fa-facebook-square fa-2x"></i></span></a>
+                        <a class="a" href="#"><span><i class="fab red-text fa-instagram fa-2x"></i></i></span></a>
+                        <a class="a" href="#"><span><i class="fab cyan-text fa-twitter-square fa-2x"></i></span></a>
+                        </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+                        <h4 style="text-align:center">Menu</h4>
+                            <div class="px-auto" style="text-align:center">
+                            <ul class="list-unstyled justify-content-center mt-4">
+                            <li><a class="a" href="{% url 'index' %}">Home</a></li>
+                            <li><a class="a" href="{% url 'about' %}">About</a></li>
+                            <li><a class="a" href="{% url 'contact' %}">Contact Us</a></li>
+                            </ul>
+                            </div>
+                </div>
+ -->
+
+                <!-- <div class="col-md ">
+                        <h4 style="text-align:center" >Have a Questions?</h4>
+                        <ul class="list-unstyled mt-4" style="text-align: center">
+
+                            <li><span><i class="fas green-text fa-map-marker-alt fa-1x mr-2"></i><span class="text">Nadergul, Hyderabad, INDIA</span></span></li>
+                            <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 9505149487  </span></a></li>
+                            <li><a class="a" href="#"><span><i class="fas blue-text fa-phone fa-1x mr-2"></i></span><span class="text">+91 7093680301  </span></a></li>
+                           <li><a class="a" href="mailto: indianfreshcart@gmail.com"><span><i class="fas cyan-text fa-envelope fa-1x mr-2"></i></span><span class="text">indianfreshcart@gmail.com</span></a></li>
+                        </ul>
+                 </div>
+            </div>
+                <div class="row">
+                        <div class="col-md-12 text-center">
+                        <p>
+                        Copyright &copy;2021 All rights reserved @ <i aria-hidden="true"></i> <a class="a" href="{% url 'index' %}">𝓘ndian𝓕resh𝓒art</a>
+
+                        </p>
+                        </div> -->
+                </div>
+            </div>
+        </footer>
+
+  {% endblock %}
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+        {% block js %}
+<!-- JQuery -->
+<script>
+        if(localStorage.getItem('cart') == null){
+            var cart = {};
+        }
+        else{
+            cart = JSON.parse(localStorage.getItem('cart'));
+            len=Object.keys(cart).length;
+            document.getElementById('cartlen').innerHTML = `<span class="badge badge-info ml-2">${len}</span>`;
+            var total=0;
+            var high=0;
+            var key1;
+            for(var key in cart){
+                if (cart.hasOwnProperty(key)){
+                    key1=parseInt(key);
+                    if(key1>high){
+                      high=key1;
+                    }
+                }
+            }
+            
+            for(var i=0;i<=high;i++){
+                if(cart[i]!=null){
+                document.getElementById(i).innerHTML = `Add to Cart <span class="badge badge-light ml-2">${cart[i][0]}</span>`;
+                total=total+cart[i][0]*cart[i][2];
+                }
+            }
+
+                $('#cartpri').html(total);
+
+        }
+
+
+    $(document).ready(function() {
+
+        $('.cart').click(function(){
+        var idstr = this.id.toString();
+        if(cart[idstr] != undefined){
+
+
+        qty = cart[idstr][0]+1;
+        farmername = document.getElementById('farmername'+idstr).innerHTML;
+        farmerusername = document.getElementById('farmerusername'+idstr).innerHTML;
+        name = document.getElementById('name'+idstr).innerHTML;
+        price = document.getElementById('price'+idstr).innerHTML;
+        cart[idstr] = [qty,name,price,farmername,farmerusername];
+        }
+        else{
+          qty = 1;
+          farmername = document.getElementById('farmername'+idstr).innerHTML;
+          farmerusername = document.getElementById('farmerusername'+idstr).innerHTML;
+          name = document.getElementById('name'+idstr).innerHTML;
+          price = document.getElementById('price'+idstr).innerHTML;
+          cart[idstr] = [qty,name,price,farmername,farmerusername];
+        }
+        updateCart(cart);
+        document.getElementById(idstr).innerHTML = `Add to Cart <span class="badge badge-light ml-2">${qty}</span>`;
+        let total=document.getElementById('cartpri').innerHTML;
+        total=parseInt(total);
+        let k=cart[idstr][2];
+        k=parseInt(k);
+        total=total+k;
+        document.getElementById('cartpri').innerHTML=total;
+
+    });
+    function updateCart(cart) {
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      len=Object.keys(cart).length;
+      document.getElementById('cartlen').innerHTML = `<span class="badge badge-info ml-2">${len}</span>`;
+
+     }
+     $('.logout-but').click(function() {
+                    localStorage.clear();
+                });
+    });
+
+
+
+
+</script>
+
+
+
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+{% extends 'Portal/index.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<br>
+<br>
+        {% if user.is_authenticated %}
+            <div class="container mt-4">
+                <div class="border p-5 mx-auto mb-3 border-0 z-depth-3" style="max-width:600px">
+                    <h1>You are Logged in as {{request.user}}</h1>
+                </div>
+            </div>
+
+        {% else %}
+        <div class="container">
+            <div class="border p-3 mx-auto mb-3 border-0 z-depth-3" style="max-width:600px">
+           <form method="POST">
+               <h3>Signup</h3>
+               {% csrf_token %}
+               {{form|crispy}}
+               <p><small>Already have an Account ! <a href="{% url 'login' %}">Log In</a></small></p>
+               <button type="submit" class="btn btn-light-green">Sign Up</button>
+           </form>
+            </div>
+        </div>
+
+        {% if checker %}
+            <!-- JQuery -->
+             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    var username="{{username}}";
+                    var email="{{email}}";
+                    $('#id_username').val(username);
+                    $('#id_email').val(email);
+                    $('#id_email').addClass('is-invalid');
+                    $('#id_email').after("<style> strong { color:red }</style><small><strong>A user with that email already exists.</strong></small>");
+                });
+            </script>
+        {% endif %}
+
+ <!-- JQuery -->
+             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+             $(document).ready(function() {
+                $('#id_username').attr('placeholder','Enter your username...');
+                $('#id_username').attr('autocomplete','off');
+                $('#id_email').attr('placeholder','Enter your Email...');
+                $('#id_email').attr('autocomplete','off');
+                $('#id_password1').attr('placeholder','Choose your password...');
+                $('#id_password2').attr('placeholder','Retype your password...');
+             });
+        </script>
+    {% endif %}
+{% endblock %}

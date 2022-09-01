@@ -1,0 +1,118 @@
+{% extends 'Portal/index.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<br>
+<br>
+        {% if user.is_authenticated %}
+        {% if profcheck %}
+       <div class="container mt-4">
+           <div class="border p-3 mx-auto mb-3 border-0 z-depth-3" style="max-width:600px">
+                          <h1>Edit Profile</h1>
+<hr>
+           <form method="POST">
+               {% csrf_token %}
+               <div class="row">
+                   <div class="col-12 col-sm-6">{{form.first_name|as_crispy_field}}</div>
+                   <div class="col-12 col-sm-6">{{form.last_name|as_crispy_field}}</div>
+
+                   <div class="col-6">{{form.gender|as_crispy_field}}</div>
+                   <div class="col-6">{{form.date_of_birth|as_crispy_field}}</div>
+                   <div class="col-6">{{form.city|as_crispy_field}}</div>
+                   <div class="col-6">{{form.state|as_crispy_field}}</div>
+                   <div class="col-6">{{form.country|as_crispy_field}}</div>
+               </div>
+               <button type="submit" class="btn btn-cyan">Submit</button>
+           </form>
+           </div>
+       </div>
+       {% else %}
+            <div class="container mt-4">
+                <div class="border p-3 mx-auto mb-3 border-0 z-depth-3" style="max-width:600px">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 col-sm-6">{{form.first_name|as_crispy_field}}</div>
+                        <div class="col-12 col-sm-6">{{form.last_name|as_crispy_field}}</div>
+
+                        <div class="col-6">{{form.gender|as_crispy_field}}</div>
+                        <div class="col-6">{{form.date_of_birth|as_crispy_field}}</div>
+                        <div class="col-6">{{form.city|as_crispy_field}}</div>
+                        <div class="col-6">{{form.state|as_crispy_field}}</div>
+                        <div class="col-6">{{form.country|as_crispy_field}}</div>
+                    </div>
+                    <button type="submit" class="btn btn-cyan">Submit</button>
+                </form>
+                </div>
+            </div>
+       {% endif %}
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+             $(document).ready(function() {
+                $('#id_first_name').attr({'placeholder':'Firstname...','autocomplete':'off'});
+                $('#id_last_name').attr({'placeholder':'Lastname...','autocomplete':'off'});
+                $('#id_date_of_birth').attr({'placeholder':'dd-mm-yyyy','autocomplete':'off'});
+                $('#id_city').attr({'placeholder':'City...','autocomplete':'off'});
+                $('#id_state').attr({'placeholder':'State','autocomplete':'off'});
+                $('#id_country').attr({'placeholder':'Country...','autocomplete':'off'});
+             });
+        </script>
+
+        {% else %}
+
+            <div class="container mt-4">
+           <div class="border p-3 mx-auto mb-3 border-0 z-depth-3" style="max-width:600px">
+               <h2>You are supposed to Login in order to update your Profile...</h2>
+                <h4>Please Click here to <a href="{% url 'login' %}">Log In</a></h4>
+           </div>
+            </div>
+
+        {% endif %}
+
+
+         <!-- JQuery -->
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+         <script>
+ 
+             var total = 0;
+             if(localStorage.getItem('cart') == null){
+             var cart = {};
+         }
+         else{
+             cart = JSON.parse(localStorage.getItem('cart'));
+             len=Object.keys(cart).length;
+             document.getElementById('cartlen').innerHTML = `<span class="badge badge-info ml-2">${len}</span>`;
+             var total=0;
+             var high=0;
+             var key1;
+             for(var key in cart){
+                 if (cart.hasOwnProperty(key)){
+                     key1=parseInt(key);
+                     if(key1>high){
+                       high=key1;
+                     }
+                 }
+             }
+             for(var i=0;i<=high;i++){
+                 if(cart[i]!=null){
+                 total=total+cart[i][0]*cart[i][2];
+                 }
+             }
+ 
+                 $('#cartpri').html(total);
+ 
+         }
+ 
+ 
+          $('.logout-but').click(function() {
+                     localStorage.clear();
+                 });
+ 
+ 
+ 
+ 
+         </script>
+
+{% endblock %}

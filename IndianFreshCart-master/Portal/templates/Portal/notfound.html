@@ -1,0 +1,53 @@
+{% extends 'Portal/index.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+   <div class="container mt-5">
+            <div class="border p-3 mx-auto mb-3 border-0 z-depth-3" style="max-width:600px">
+    <h2>You are supposed to Login in order to perform this Operation...</h2>
+      <h4>Please Click here to <a href="{% url 'login' %}">Log In</a></h4>
+</div>
+    </div>
+
+{% block js %}
+{% endblock %}
+
+        <!-- JQuery -->
+             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+
+            var total = 0;
+            if(localStorage.getItem('cart') == null){
+            var cart = {};
+        }
+        else{
+            cart = JSON.parse(localStorage.getItem('cart'));
+            len=Object.keys(cart).length;
+            document.getElementById('cartlen').innerHTML = `<span class="badge badge-info ml-2">${len}</span>`;
+            var total=0;
+            var high=0;
+            var key1;
+            for(var key in cart){
+                if (cart.hasOwnProperty(key)){
+                    key1=parseInt(key);
+                    if(key1>high){
+                      high=key1;
+                    }
+                }
+            }
+            for(var i=0;i<=high;i++){
+                if(cart[i]!=null){
+                total=total+cart[i][0]*cart[i][2];
+                }
+            }
+
+                $('#cartpri').html(total);
+
+        }
+        </script>
+
+{% endblock %}

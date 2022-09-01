@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+	<!-- main content -->
+	<div class="wrapper">
+
+<!-- ****** table  start ********** -->
+		<div class="row">
+			<div class="col-12 col-m-12 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<h3 style="color:red; text-align:center" >Total Products
+						</h3>
+
+					</div>
+					<div class="card-content">
+						<table>
+							<thead>
+                <tr>
+                  <th>First Name</th>
+					<th>&nbsp;</th>
+<th>&nbsp;</th>
+                  <th>LastName</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+                  <th>Price</th>
+					<th>&nbsp;</th><th>&nbsp;</th>
+                  <th>Desc</th>
+					<th>&nbsp;</th><th>&nbsp;</th>
+                  <th>Location</th>
+					<th>&nbsp;</th><th>&nbsp;</th>
+
+                </tr>
+							</thead>
+							<tbody>
+                {% for r in products %}
+                <tr>
+
+                  <td> {{r.farmer_name}}</td>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+                  <td> {{r.product_name}}</td>
+<th>&nbsp;</th>
+					 <th>&nbsp;</th>
+                  <td>{{r.product_price}}</td>
+					<th>&nbsp;</th><th>&nbsp;</th>
+                  <td>{{r.product_desc}}</td>
+					<th>&nbsp;</th><th>&nbsp;</th>
+					<td>{{r.location}}</td>
+					<th>&nbsp;</th><th>&nbsp;</th>
+
+                </tr>
+                {% endfor %}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- ****** table start ********** -->
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</div>
+	<!-- end main content -->
+{% endblock content %}
