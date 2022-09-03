@@ -41,7 +41,6 @@ path('viewworkers/',my_views.viewworkers,name="viewworkers"),
 path('viewinfo/',my_views.viewinfo,name="viewinfo"),
 path('viewcomp/',my_views.viewcomp,name="viewcomp"),
 path('viewdelivery/',my_views.viewdelivery,name="viewdelivery"),
-
 path('addinfo/',my_views.addinfo,name="addinfo"),
 path('add_comp/',my_views.add_comp,name="add_comp"),
 path('add_delivery/',my_views.add_delivery,name="add_delivery"),
