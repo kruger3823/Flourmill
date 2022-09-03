@@ -72,3 +72,17 @@ class report(models.Model):
     jbtitle=models.CharField(max_length=200,null=True)
     jbname=models.CharField(max_length=200,null=True)
     jbdes=models.CharField(max_length=200,null=True)
+
+
+class delivery(models.Model):
+    jbtitle=models.CharField(max_length=200,null=True)
+    jbname=models.CharField(max_length=200,null=True)
+    jbdes=models.CharField(max_length=200,null=True)
+
+
+
+class info(models.Model):
+    jbtitle=models.CharField(max_length=200,null=True)
+    jbname=models.CharField(max_length=200,null=True)
+    jbdes=models.CharField(max_length=200,null=True)
+    mob=models.CharField(max_length=200, null=True)

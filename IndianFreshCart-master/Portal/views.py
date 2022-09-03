@@ -6,7 +6,7 @@ from . forms import Profileform,Productform,Orderform
 from . models import Profile,Product,Order,Comment
 from . import signals
 import json
-from .models import comp,report
+from .models import comp,report,delivery,info
 from . import forms, models
 from .forms import StaffUserForm
 from django.contrib.auth.models import Group
@@ -362,3 +362,37 @@ def add_report(request):
 def viewreport(request):
     job_view = report.objects.all() #.filter(status=True)
     return render(request, 'viewcomp.html', {'job_view': job_view})
+
+
+def add_delivery(request):
+    if request.method == "POST":
+        jbtitle = request.POST.get('jbtitle')
+        jbname = request.POST.get('jbname')
+        jbdes = request.POST.get('jbdes')
+        delivery(jbtitle=jbtitle, jbdes=jbdes, jbname=jbname).save()
+        return render(request, 'Portal/staff_dashboard.html')
+    return render(request, 'adddelivery.html')
+
+
+
+def viewdelivery(request):
+    job_view = delivery.objects.all() #.filter(status=True)
+    return render(request, 'viewdelivery.html', {'job_view': job_view})
+
+
+
+def addinfo(request):
+    if request.method == "POST":
+        jbtitle = request.POST.get('jbtitle')
+        jbname = request.POST.get('jbname')
+        jbdes = request.POST.get('jbdes')
+        mob = request.POST.get('mob')
+        info(jbtitle=jbtitle, jbdes=jbdes, jbname=jbname,mob=mob).save()
+        return render(request, 'Portal/staff_dashboard.html')
+    return render(request, 'addinfo.html')
+
+
+
+def viewinfo(request):
+    job_view = info.objects.all() #.filter(status=True)
+    return render(request, 'viewinfo.html', {'job_view': job_view})
