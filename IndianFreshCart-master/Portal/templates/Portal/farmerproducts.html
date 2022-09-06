@@ -12,7 +12,7 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
-              <div class="col-12">{{form.farmer_name|as_crispy_field}}</div>
+
               <div class="col-12">{{form.product_name|as_crispy_field}}</div>
               <div class="col-12">{{form.product_price|as_crispy_field}}</div>
               <div class="col-12">{{form.product_desc|as_crispy_field}}</div>
@@ -45,7 +45,7 @@
                         <div class="card-body">
     
                           <!-- Title -->
-                          <h3 id="farmername{{product.id}}" class="card-title">Farmer - {{product.farmer_name}}</h4>
+                          <h3 id="farmername{{product.id}}" class="card-title">Mill owner - {{product.farmer_name}}</h4>
                           <h4 id="name{{product.id}}" class="card-title">Name : {{product.product_name}}</h4>
                           <!-- Text -->
                           <p class="card-text">Price : Rs.<span id="price{{product.id}}">{{product.product_price}}</span>/-</p>

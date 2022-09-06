@@ -24,7 +24,7 @@ class Profile(models.Model):
 
 class Product(models.Model):
     user=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
-    farmer_name=models.CharField(max_length=100,default="")
+
     product_name=models.CharField(max_length=100,default="")
     product_price=models.FloatField(max_length=10,default="0.0")
     product_desc=models.TextField(default="")

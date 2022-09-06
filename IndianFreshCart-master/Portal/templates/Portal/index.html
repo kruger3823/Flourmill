@@ -22,7 +22,7 @@
         .a{
               color: white;
         }
-        
+
     </style>
 
 
@@ -97,13 +97,19 @@
                                  <li class="nav-item">
                                   <a class="nav-link" href="{% url 'add-staff' %}">Add Staff</a>
                                 </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'view-staff' %}">View Staff</a>
+                                </li>
+                     <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'view-customer' %}">View Staff</a>
+                                </li>
                                      <li class="nav-item">
-                                  <a class="nav-link" href="{% url 'viewinfo' %}">View Staff info</a>
+                                  <a class="nav-link" href="{% url 'viewinfo' %}">View Staff additionalinfo</a>
                                 </li>
 
 
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{% url 'viewreport' %}">view Report</a>
+                                  <a class="nav-link" href="{% url 'viewreport' %}">View Report</a>
                                 </li>
 
 
@@ -295,7 +301,7 @@
                     <form method="POST" enctype="multipart/form-data">
                       {% csrf_token %}
                       <div class="row">
-                        <div class="col-12">{{form.farmer_name|as_crispy_field}}</div>
+
                         <div class="col-12">{{form.product_name|as_crispy_field}}</div>
                         <div class="col-12">{{form.product_price|as_crispy_field}}</div>
                         <div class="col-12">{{form.product_desc|as_crispy_field}}</div>

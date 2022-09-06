@@ -35,27 +35,34 @@
 </head>
 
 
-<h3 style="text-align:center;"> <a>Reports from staff</a></h3>
+<h3 style="text-align:center;"> <a>View Customers</a></h3>
 <div class="card-body table-responsive p-0">
                                       <table class="table table-hover text-nowrap">
                                         <thead>
 
                                           <tr>
-                                            <th>Report Title</th>
 
-                                            <th>Staff Name</th>
-                                            <th>Report</th>
+
+                                            <th>First name</th>
+                                            <th>Last name</th>
+                                             <th>City</th>
+                                            <th>Country</th>
+
 
 
                                           </tr>
 
                                         </thead>
                                         {% for s in job_view %}
-                                          <tr>
-                                            <td> {{s.jbtitle}}</td>
 
-                                            <td>{{s.jbdes}}</td>
-                                            <td>{{s.jbname}}</td>
+                                          <tr>
+
+
+
+                                            <td>{{s.first_name}}</td>
+                                            <td>{{s.last_name}}</td>
+                                            <td>{{s.city}}</td>
+                                            <td>{{s.country}}</td>
 
 
 

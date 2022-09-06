@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from . forms import Profileform,Productform,Orderform
+from django.contrib.auth.models import User
+
 from . models import Profile,Product,Order,Comment
 from . import signals
 import json
@@ -333,11 +335,8 @@ def a(request):
 def add_comp(request):
     if request.method == "POST":
         jbtitle = request.POST.get('jbtitle')
-
         jbname = request.POST.get('jbname')
         jbdes = request.POST.get('jbdes')
-
-
         comp(jbtitle=jbtitle, jbdes=jbdes, jbname=jbname).save()
         return render(request, 'success.html')
     return render(request, 'addcomp.html')
@@ -361,7 +360,7 @@ def add_report(request):
 
 def viewreport(request):
     job_view = report.objects.all() #.filter(status=True)
-    return render(request, 'viewcomp.html', {'job_view': job_view})
+    return render(request, 'viewreport.html', {'job_view': job_view})
 
 
 def add_delivery(request):
@@ -396,3 +395,13 @@ def addinfo(request):
 def viewinfo(request):
     job_view = info.objects.all() #.filter(status=True)
     return render(request, 'viewinfo.html', {'job_view': job_view})
+
+
+def viewstaff(request):
+    job_view = User.objects.all()#filter(status=True)
+    return render(request, 'viewstaffs.html', {'job_view': job_view})
+
+
+def viewcustomer(request):
+    job_view = Profile.objects.all()#filter(status=True)
+    return render(request, 'viewcustomer.html', {'job_view': job_view})
